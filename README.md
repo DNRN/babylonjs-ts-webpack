@@ -31,6 +31,10 @@ create the certificates
 
 This creates the certificates for the 4 domains and adds them to the current folder.
 
+If you like to setup local hostnames for development. Edit the hosts and add a new hostname map to localhost:
+
+    127.0.0.1   mydomain.dev
+
 ## Trouble shooting
 
 Not allowed to use port 443.
