@@ -17,6 +17,16 @@ Build development/production
 
     npm run build:[dev|prod]
 
+## Docker
+
+Create an image. Remember to build the project first
+
+    docker build -t html/babylonjs .
+
+Run the docker container detached (d) and forward to port 8080 (p) on the host
+
+    docker run -d -p 8080:80 html/babylonjs
+
 ## Installing certificates
 
 It is quite simple to install local certificates and add them to your browser. This can be achived with `mkcert`. https://github.com/FiloSottile/mkcert
