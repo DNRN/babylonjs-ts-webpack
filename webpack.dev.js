@@ -1,12 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 const { merge } = require('webpack-merge');
-const { webpack } = require('webpack');
+const webpack = require('webpack');
 const common = require('./webpack.common.js');
 
 module.exports = (env) => {
-	console.log('env: ', env);
-
 	return merge(common, {
 		mode: 'development',
 		devtool: 'inline-source-map',
@@ -23,9 +21,8 @@ module.exports = (env) => {
 			server: {
 				type: 'https',
 				options: {
-					key: fs.readFileSync('slam.dev+3-key.pem'),
-					cert: fs.readFileSync('slam.dev+3.pem'),
-					// requestCert: true,
+					key: fs.readFileSync('renderer.dev+3-key.pem'),
+					cert: fs.readFileSync('renderer.dev+3.pem'),
 				},
 			},
 			allowedHosts: 'all',
@@ -38,6 +35,10 @@ module.exports = (env) => {
 			path: __dirname + '/temp',
 			publicPath: '/',
 		},
-		plugins: [],
+		plugins: [
+			// new webpack.DefinePlugin({
+			// 	'process.env.MODE': JSON.stringify(env.MODE),
+			// }),
+		],
 	});
 };

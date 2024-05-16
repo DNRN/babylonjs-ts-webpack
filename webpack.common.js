@@ -1,9 +1,5 @@
 const path = require('path');
 
-const isProduction = process.env.NODE_ENV == 'production';
-
-console.log('dirname', __dirname);
-
 /* Configure HTMLWebpack plugin */
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -27,26 +23,6 @@ const ProgressBarPluginConfig = new ProgressBarPlugin();
 const webpack = require('webpack');
 
 module.exports = {
-	// entry: {
-	// 	index: './src/index.ts',
-	// },
-	// output: {
-	// 	path: path.resolve(__dirname, './dist'),
-	// 	filename: '[name].[contenthash].js',
-	// },
-	// devServer: {
-	// 	open: true,
-	// 	host: 'localhost',
-	// },
-	// plugins: [
-	// 	new HtmlWebpackInjector(),
-	// 	new HtmlWebpackPlugin({
-	// 		// assetPath: '',
-	// 		template: __dirname + '/src/index.html',
-	// 		filename: 'index.html',
-	// 		inject: 'body',
-	// 	}),
-	// ],
 	module: {
 		rules: [
 			{
@@ -74,11 +50,14 @@ module.exports = {
 		],
 	},
 	resolve: {
-		extensions: ['.tsx', '.ts', '.jsx', '.js', '...'],
+		extensions: ['.tsx', '.ts', '.jsx', '.js'],
 	},
 	plugins: [
 		HTMLWebpackPluginConfig,
 		ProgressBarPluginConfig,
+		new webpack.EnvironmentPlugin({
+			NODE_ENV: 'developement',
+		}),
 		new webpack.ProvidePlugin({
 			process: 'process/browser',
 		}),
